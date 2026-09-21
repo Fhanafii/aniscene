@@ -4,6 +4,9 @@
     "slug": "aniscene",
     "version": "0.1.0",
     "orientation": "portrait",
-    "web": { "bundler": "metro" }
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/branding/aniscene-logo-rounded.png"
+    }
   }
 }

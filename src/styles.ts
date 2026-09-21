@@ -250,6 +250,11 @@ export const styles = StyleSheet.create({
   },
   footerBrand: { color: colors.brandDark, fontSize: 13, fontWeight: '800' },
   footerText: { color: colors.textMuted, fontSize: 12 },
+  footerBrandBlock: { alignItems: 'flex-start', gap: 5 },
+  footerLogo: { width: 132, height: 60 },
+  footerTagline: { color: colors.textSecondary, fontSize: 13, fontWeight: '600' },
+  footerHeart: { color: colors.errorText },
+  footerLink: { color: colors.brand, fontWeight: '700', textDecorationLine: 'underline' },
 
   '@media (max-width: 1080px)': {
     character: { width: 160, height: 190 },

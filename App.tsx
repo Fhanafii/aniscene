@@ -4,15 +4,18 @@ import { useImageSearch } from './src/hooks/useImageSearch';
 import { DecorativeCharacter } from './src/components/DecorativeCharacter';
 import { ImageUploader } from './src/components/ImageUploader';
 import { SearchResults } from './src/components/SearchResults';
+import { BrandFooter } from './src/components/BrandFooter';
+import { useWebMetadata } from './src/web/Metadata';
 import { LandingPage } from './src/components/LandingPage';
 import { styles } from './src/styles';
 
 export default function App() {
   const search = useImageSearch();
+  useWebMetadata();
   const [screen, setScreen] = useState<'landing' | 'search'>(() => Platform.OS === 'web' && window.location.pathname === '/search' ? 'search' : 'landing');
   const startSearch = useCallback((file: File) => { search.selectImage(file); if (Platform.OS === 'web') window.history.pushState({}, '', '/search'); setScreen('search'); }, [search.selectImage]);
   useEffect(() => { if (Platform.OS !== 'web') return; const onPopState = () => setScreen(window.location.pathname === '/search' ? 'search' : 'landing'); window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState); }, []);
-  if (screen === 'landing') return <ScrollView contentContainerStyle={styles.page}><LandingPage onImageSelected={startSearch} /><View style={styles.footer}><Text style={styles.footerText}>© 2026 AniScene</Text><Text style={styles.footerText}>Built by FhanaLabs</Text><Text style={styles.footerText}>Find the frame.</Text></View></ScrollView>;
+  if (screen === 'landing') return <ScrollView contentContainerStyle={styles.page}><LandingPage onImageSelected={startSearch} /><BrandFooter /></ScrollView>;
   return <ScrollView contentContainerStyle={styles.page}>
     <View style={styles.hero}>
       <DecorativeCharacter side="left" />
@@ -27,6 +30,6 @@ export default function App() {
       <DecorativeCharacter side="right" />
     </View>
     <SearchResults status={search.status} results={search.results} message={search.message} onTryAgain={search.clearImage} />
-    <View style={styles.footer}><Text style={styles.footerText}>© 2026 AniScene</Text><Text style={styles.footerText}>Built by FhanaLabs</Text><Text style={styles.footerText}>Find the frame.</Text></View>
+    <BrandFooter />
   </ScrollView>;
 }

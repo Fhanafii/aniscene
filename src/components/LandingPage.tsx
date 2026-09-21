@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Image, Platform, Pressable, Text, View } from 'react-native';
+const { ChevronDown, ListChecks, SearchCheck, Upload } = require('lucide-react-native') as any;
 import { ACCEPTED_TYPES, MAX_FILE_SIZE } from '../config';
 import { landingStyles } from '../landingStyles';
 
@@ -64,9 +65,20 @@ function ExampleFrames() {
 }
 
 function HowToUse() {
-  return <View style={landingStyles.infoSection} nativeID="how-to-use"><View style={landingStyles.infoHeading}><Text style={landingStyles.sectionKicker}>How to use</Text><Text style={landingStyles.infoTitle}>From screenshot to answer in three moves.</Text></View><View style={landingStyles.stepsGrid}>{[['01', 'Drop a screenshot', 'Drag a frame onto AniScene or choose an image from your device.'], ['02', 'Find the scene', 'AniScene compares the screenshot with indexed anime scenes.'], ['03', 'Pick the match', 'Review the episode, timestamp, and similarity of each result.']].map(([number, title, copy]) => <View key={number} style={landingStyles.stepCard}><Text style={landingStyles.stepNumber}>{number}</Text><Text style={landingStyles.stepTitle}>{title}</Text><Text style={landingStyles.stepCopy}>{copy}</Text></View>)}</View></View>;
+  const steps = [
+    { icon: Upload, title: 'Drop a screenshot', copy: 'Drag a frame onto AniScene or choose an image from your device.' },
+    { icon: SearchCheck, title: 'Find the scene', copy: 'AniScene compares the screenshot with indexed anime scenes.' },
+    { icon: ListChecks, title: 'Pick the match', copy: 'Review the episode, timestamp, and similarity of each result.' },
+  ];
+  return <View style={landingStyles.infoSection} nativeID="how-to-use"><View style={landingStyles.infoHeading}><Text style={landingStyles.sectionKicker}>How to use</Text><Text style={landingStyles.infoTitle}>From screenshot to answer in three moves.</Text></View><View style={landingStyles.stepsGrid}>{steps.map(({ icon: Icon, title, copy }, index) => <View key={title} style={landingStyles.stepCard}><View style={landingStyles.stepIcon}><Icon size={25} color="#0E156A" strokeWidth={2} /></View><Text style={landingStyles.stepNumber}>0{index + 1}</Text><Text style={landingStyles.stepTitle}>{title}</Text><Text style={landingStyles.stepCopy}>{copy}</Text></View>)}</View></View>;
 }
 
 function FAQ() {
-  return <View style={landingStyles.faqSection} nativeID="faq"><View style={landingStyles.infoHeading}><Text style={landingStyles.sectionKicker}>FAQ</Text><Text style={landingStyles.infoTitle}>A few useful answers.</Text></View><View style={landingStyles.faqList}>{[['What kind of screenshot works best?', 'A clear frame from an anime episode works best. Avoid heavily cropped, blurry, or obstructed screenshots when possible.'], ['What image formats are supported?', 'AniScene accepts JPG, PNG, and WEBP screenshots up to 10 MB in the web MVP.'], ['Does AniScene search videos directly?', 'No. It finds the closest indexed scene and returns the episode and timestamp for that match.']].map(([question, answer]) => <View key={question} style={landingStyles.faqItem}><Text style={landingStyles.faqQuestion}>{question}</Text><Text style={landingStyles.faqAnswer}>{answer}</Text></View>)}</View></View>;
+  const [open, setOpen] = useState<number | null>(null);
+  const questions = [
+    ['What kind of screenshot works best?', 'A clear frame from an anime episode works best. Avoid heavily cropped, blurry, or obstructed screenshots when possible.'],
+    ['What image formats are supported?', 'AniScene accepts JPG, PNG, and WEBP screenshots up to 10 MB in the web MVP.'],
+    ['Does AniScene search videos directly?', 'No. It finds the closest indexed scene and returns the episode and timestamp for that match.'],
+  ];
+  return <View style={landingStyles.faqSection} nativeID="faq"><View style={landingStyles.infoHeading}><Text style={landingStyles.sectionKicker}>FAQ</Text><Text style={landingStyles.infoTitle}>A few useful answers.</Text></View><View style={landingStyles.faqList}>{questions.map(([question, answer], index) => { const isOpen = open === index; return <View key={question} style={landingStyles.faqItem}><Pressable accessibilityRole="button" accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(isOpen ? null : index)} style={landingStyles.faqQuestionRow}><Text style={landingStyles.faqQuestion}>{question}</Text><ChevronDown size={20} color="#0E156A" style={isOpen ? landingStyles.faqChevronOpen : undefined} /></Pressable>{isOpen && <View style={landingStyles.faqAnswerWrap}><Text style={landingStyles.faqAnswer}>{answer}</Text></View>}</View>; })}</View></View>;
 }

@@ -250,11 +250,10 @@ export const styles = StyleSheet.create({
   },
   footerBrand: { color: colors.brandDark, fontSize: 13, fontWeight: '800' },
   footerText: { color: colors.textMuted, fontSize: 12 },
-  footerBrandBlock: { alignItems: 'flex-start', gap: 5 },
+  footerBrandBlock: { alignItems: 'flex-start', gap: 5, maxWidth: 360 },
   footerLogo: { width: 132, height: 60 },
-  footerTagline: { color: colors.textSecondary, fontSize: 13, fontWeight: '600' },
-  footerHeart: { color: colors.errorText },
-  footerLink: { color: colors.brand, fontWeight: '700', textDecorationLine: 'underline' },
+  footerTagline: { color: colors.textSecondary, fontSize: 13, fontWeight: '600', maxWidth: 300, lineHeight: 18 },
+  footerHeart: { color: colors.errorText, fontSize: 13, marginLeft: 2 },
 
   '@media (max-width: 1080px)': {
     character: { width: 160, height: 190 },

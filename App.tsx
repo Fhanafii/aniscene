@@ -19,7 +19,7 @@ export default function App() {
   if (screen === 'landing') return <ScrollView contentContainerStyle={styles.page}><LandingPage onImageSelected={startSearch} /><BrandFooter onHome={goHome} /></ScrollView>;
   return <ScrollView contentContainerStyle={styles.page}>
     <View style={styles.hero}>
-      <DecorativeCharacter side="left" />
+      {/* <DecorativeCharacter side="left" /> */}
       <View style={styles.heroContent}>
         <View style={styles.eyebrow}><View style={styles.dot} /><Text style={styles.eyebrowText}>Screenshot search for anime</Text></View>
         <Text style={styles.title}>Find the anime{ '\n' }scene.</Text>
@@ -28,7 +28,7 @@ export default function App() {
         <search.SubmitButton />
         <Text style={styles.apiNote}>Powered by AniScene visual search</Text>
       </View>
-      <DecorativeCharacter side="right" />
+      {/* <DecorativeCharacter side="right" /> */}
     </View>
     <SearchResults status={search.status} results={search.results} message={search.message} onTryAgain={search.clearImage} />
     <BrandFooter onHome={goHome} />

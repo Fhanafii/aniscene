@@ -6,8 +6,8 @@ export const spacing = {
   xl: 34,
   xxl: 52,
 
-  pagePadding: 32,
-  contentMaxWidth: 1180,
+  pagePadding: 20,
+  contentMaxWidth: 1500,
   heroContentMaxWidth: 560,
   searchMaxWidth: 540,
 

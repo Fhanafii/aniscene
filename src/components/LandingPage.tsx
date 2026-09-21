@@ -9,6 +9,7 @@ const exampleFrames = [
   { image: require('../../assets/example/scene01.jpg'), title: 'Episode 01', timestamp: '02:17' },
   { image: require('../../assets/example/scene02.jpg'), title: 'Episode 02', timestamp: '08:42' },
   { image: require('../../assets/example/scene03.jpg'), title: 'Episode 03', timestamp: '17:31' },
+  { image: require('../../assets/example/scene01.jpg'), title: 'Episode 04', timestamp: '11:09' },
 ];
 
 export function LandingPage({ onImageSelected }: { onImageSelected: (file: File) => void }) {

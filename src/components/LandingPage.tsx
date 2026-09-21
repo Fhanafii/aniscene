@@ -4,6 +4,11 @@ import { ACCEPTED_TYPES, MAX_FILE_SIZE } from '../config';
 import { landingStyles } from '../landingStyles';
 
 const logo = require('../../assets/branding/aniscene-logo.png');
+const exampleFrames = [
+  { image: require('../../assets/example/scene01.jpg'), title: 'Episode 01', timestamp: '02:17' },
+  { image: require('../../assets/example/scene02.jpg'), title: 'Episode 02', timestamp: '08:42' },
+  { image: require('../../assets/example/scene03.jpg'), title: 'Episode 03', timestamp: '17:31' },
+];
 
 export function LandingPage({ onImageSelected }: { onImageSelected: (file: File) => void }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -45,13 +50,23 @@ export function LandingPage({ onImageSelected }: { onImageSelected: (file: File)
       </View>
     </View>
     <ExampleFrames />
+    <HowToUse />
+    <FAQ />
     {Platform.OS === 'web' && <Animated.View pointerEvents={dragging ? 'auto' : 'none'} style={[landingStyles.dropOverlay, { opacity: overlay, transform: [{ scale: overlay.interpolate({ inputRange: [0, 1], outputRange: [1.02, 1] }) }] }]}><View style={landingStyles.dropOverlayCard}><View style={landingStyles.dropOverlayIcon}><Text style={landingStyles.dropOverlayIconText}>↓</Text></View><Text style={landingStyles.dropOverlayTitle}>Drop your screenshot</Text><Text style={landingStyles.dropOverlayCopy}>Release to start finding the scene.</Text></View></Animated.View>}
   </View>;
 }
 
 function ExampleFrames() {
   return <View style={landingStyles.exampleSection}>
-    <View style={landingStyles.exampleHeading}><View><Text style={landingStyles.sectionKicker}>From screenshot to scene</Text><Text style={landingStyles.exampleTitle}>A clearer way to place the moment.</Text></View><Text style={landingStyles.exampleNote}>Example result layout</Text></View>
-    <View style={landingStyles.exampleGrid}>{['A frame worth remembering', 'The quiet in-between', 'One more clue'].map((label, index) => <View key={label} style={landingStyles.exampleCard}><View style={[landingStyles.exampleArt, index === 0 ? landingStyles.exampleArt0 : index === 1 ? landingStyles.exampleArt1 : landingStyles.exampleArt2]}><View style={landingStyles.exampleSun} /><View style={landingStyles.exampleHorizon} /><View style={landingStyles.exampleFigure} /><Text style={landingStyles.exampleLabel}>EXAMPLE FRAME</Text></View><View style={landingStyles.exampleCardBody}><Text style={landingStyles.exampleCardTitle}>{label}</Text><Text style={landingStyles.exampleMeta}>Anime title · Episode — · Timestamp —</Text><Text style={landingStyles.exampleMatch}>Match details appear here →</Text></View></View>)}</View>
+    <View style={landingStyles.exampleHeading}><View><Text style={landingStyles.sectionKicker}>From screenshot to scene</Text><Text style={landingStyles.exampleTitle}>A clearer way to place the moment.</Text></View><Text style={landingStyles.exampleNote}>Example results</Text></View>
+    <View style={landingStyles.exampleGrid}>{exampleFrames.map((frame, index) => <View key={frame.title} style={landingStyles.exampleCard}><View style={landingStyles.exampleArt}><Image source={frame.image} style={landingStyles.exampleImage} resizeMode="cover" /><Text style={landingStyles.exampleLabel}>SCENE {index + 1}</Text><Text style={landingStyles.exampleTimestamp}>{frame.timestamp}</Text></View><View style={landingStyles.exampleCardBody}><Text style={landingStyles.exampleCardTitle}>{frame.title}</Text><Text style={landingStyles.exampleMeta}>Anime title · matched scene</Text><Text style={landingStyles.exampleMatch}>Visual match preview →</Text></View></View>)}</View>
   </View>;
+}
+
+function HowToUse() {
+  return <View style={landingStyles.infoSection} nativeID="how-to-use"><View style={landingStyles.infoHeading}><Text style={landingStyles.sectionKicker}>How to use</Text><Text style={landingStyles.infoTitle}>From screenshot to answer in three moves.</Text></View><View style={landingStyles.stepsGrid}>{[['01', 'Drop a screenshot', 'Drag a frame onto AniScene or choose an image from your device.'], ['02', 'Find the scene', 'AniScene compares the screenshot with indexed anime scenes.'], ['03', 'Pick the match', 'Review the episode, timestamp, and similarity of each result.']].map(([number, title, copy]) => <View key={number} style={landingStyles.stepCard}><Text style={landingStyles.stepNumber}>{number}</Text><Text style={landingStyles.stepTitle}>{title}</Text><Text style={landingStyles.stepCopy}>{copy}</Text></View>)}</View></View>;
+}
+
+function FAQ() {
+  return <View style={landingStyles.faqSection} nativeID="faq"><View style={landingStyles.infoHeading}><Text style={landingStyles.sectionKicker}>FAQ</Text><Text style={landingStyles.infoTitle}>A few useful answers.</Text></View><View style={landingStyles.faqList}>{[['What kind of screenshot works best?', 'A clear frame from an anime episode works best. Avoid heavily cropped, blurry, or obstructed screenshots when possible.'], ['What image formats are supported?', 'AniScene accepts JPG, PNG, and WEBP screenshots up to 10 MB in the web MVP.'], ['Does AniScene search videos directly?', 'No. It finds the closest indexed scene and returns the episode and timestamp for that match.']].map(([question, answer]) => <View key={question} style={landingStyles.faqItem}><Text style={landingStyles.faqQuestion}>{question}</Text><Text style={landingStyles.faqAnswer}>{answer}</Text></View>)}</View></View>;
 }

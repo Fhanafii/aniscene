@@ -4,7 +4,7 @@ import { styles } from '../styles';
 
 const logo = require('../../assets/branding/aniscene-logo.svg');
 
-export function BrandFooter() {
+export function BrandFooter({ onHome }: { onHome: () => void }) {
   const heartColor = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function BrandFooter() {
 
   return <View style={styles.footer}>
     <View style={styles.footerBrandBlock}>
-      <Image source={logo} style={styles.footerLogo} accessibilityLabel="AniScene" />
+      <Pressable accessibilityRole="link" accessibilityLabel="Go to AniScene home" onPress={onHome} hitSlop={8}><Image source={logo} style={styles.footerLogo} accessibilityLabel="AniScene" /></Pressable>
       <Text style={styles.footerTagline}>Upload an anime screenshot and find the matching scene with AniScene.</Text>
       <Text style={styles.footerText}>© 2026 AniScene</Text>
     </View>

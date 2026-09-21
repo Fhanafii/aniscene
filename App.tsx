@@ -14,8 +14,9 @@ export default function App() {
   useWebMetadata();
   const [screen, setScreen] = useState<'landing' | 'search'>(() => Platform.OS === 'web' && window.location.pathname === '/search' ? 'search' : 'landing');
   const startSearch = useCallback((file: File) => { search.selectImage(file); if (Platform.OS === 'web') window.history.pushState({}, '', '/search'); setScreen('search'); }, [search.selectImage]);
+  const goHome = useCallback(() => { search.clearImage(); if (Platform.OS === 'web') window.history.pushState({}, '', '/'); setScreen('landing'); }, [search.clearImage]);
   useEffect(() => { if (Platform.OS !== 'web') return; const onPopState = () => setScreen(window.location.pathname === '/search' ? 'search' : 'landing'); window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState); }, []);
-  if (screen === 'landing') return <ScrollView contentContainerStyle={styles.page}><LandingPage onImageSelected={startSearch} /><BrandFooter /></ScrollView>;
+  if (screen === 'landing') return <ScrollView contentContainerStyle={styles.page}><LandingPage onImageSelected={startSearch} /><BrandFooter onHome={goHome} /></ScrollView>;
   return <ScrollView contentContainerStyle={styles.page}>
     <View style={styles.hero}>
       <DecorativeCharacter side="left" />
@@ -30,6 +31,6 @@ export default function App() {
       <DecorativeCharacter side="right" />
     </View>
     <SearchResults status={search.status} results={search.results} message={search.message} onTryAgain={search.clearImage} />
-    <BrandFooter />
+    <BrandFooter onHome={goHome} />
   </ScrollView>;
 }

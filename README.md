@@ -1,10 +1,8 @@
+# AniScene
+
 <p align="center">
   <img src="./assets/branding/aniscene-logo.png" alt="AniScene" width="260" />
 </p>
-
-<h1 align="center">AniScene</h1>
-
-<p align="center">Find anime scenes from screenshots.</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Expo-53-000020?logo=expo&logoColor=white" alt="Expo 53" />
@@ -16,7 +14,7 @@
   <img src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" alt="Vercel ready" />
 </p>
 
-AniScene is a focused visual-search tool for anime. Upload a screenshot and the app searches the existing AniScene API for matching anime scenes, episodes, timestamps, and thumbnails.
+Find anime scenes from screenshots. AniScene is a focused visual-search tool for anime. Upload a screenshot and the app searches the existing AniScene API for matching anime scenes, episodes, timestamps, and thumbnails.
 
 ## Showcase
 
@@ -129,4 +127,4 @@ npm run build      # Export the web app to dist/
 
 ## License
 
-This frontend is developed for AniScene by FhanaLabs.
+This frontend is released under the [MIT License](./LICENSE) and developed for AniScene by [FhanaLabs](https://fhanalabs.site/).

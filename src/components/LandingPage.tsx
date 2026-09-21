@@ -46,7 +46,7 @@ export function LandingPage({ onImageSelected }: { onImageSelected: (file: File)
       <Text style={landingStyles.landingTitle}>Remember the scene.{ '\n' }Find the frame.</Text>
       <Text style={landingStyles.landingCopy}>Drop a screenshot. AniScene matches it to the anime scene, episode, and timestamp you are looking for.</Text>
       <View style={landingStyles.landingActions}>
-        <Pressable style={landingStyles.landingPrimary} onPress={chooseImage}><Text style={landingStyles.landingPrimaryText}>Find a scene <Text style={landingStyles.landingArrow}>→</Text></Text></Pressable>
+        <Pressable style={landingStyles.landingPrimary} onPress={chooseImage}><Text style={landingStyles.landingPrimaryText}>Upload a scene <Text style={landingStyles.landingArrow}>→</Text></Text></Pressable>
         <Text style={landingStyles.landingHint}>JPG, PNG, or WEBP · up to 10 MB</Text>{!!message && <Text style={landingStyles.message}>{message}</Text>}
       </View>
     </View>

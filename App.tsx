@@ -1,13 +1,18 @@
 import { ScrollView, Text, View } from 'react-native';
+import { useCallback, useState } from 'react';
 import { useImageSearch } from './src/hooks/useImageSearch';
 import { BrandHeader } from './src/components/BrandHeader';
 import { DecorativeCharacter } from './src/components/DecorativeCharacter';
 import { ImageUploader } from './src/components/ImageUploader';
 import { SearchResults } from './src/components/SearchResults';
+import { LandingPage } from './src/components/LandingPage';
 import { styles } from './src/styles';
 
 export default function App() {
   const search = useImageSearch();
+  const [screen, setScreen] = useState<'landing' | 'search'>('landing');
+  const startSearch = useCallback((file: File) => { search.selectImage(file); setScreen('search'); }, [search.selectImage]);
+  if (screen === 'landing') return <ScrollView contentContainerStyle={styles.page}><BrandHeader /><LandingPage onImageSelected={startSearch} /><View style={styles.footer}><Text style={styles.footerText}>© 2026 AniScene</Text><Text style={styles.footerText}>Built by FhanaLabs</Text><Text style={styles.footerText}>Find the frame.</Text></View></ScrollView>;
   return <ScrollView contentContainerStyle={styles.page}>
     <BrandHeader />
     <View style={styles.hero}>

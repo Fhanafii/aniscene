@@ -1,0 +1,36 @@
+import { StyleSheet } from 'react-native';
+import { colors } from './theme/colors';
+import { spacing } from './theme/spacing';
+import { typography, fontFamily } from './theme/typography';
+
+export const landingStyles = StyleSheet.create({
+  landing: { width: '100%', maxWidth: spacing.contentMaxWidth, alignSelf: 'center' },
+  landingHero: { minHeight: 600, alignItems: 'center', justifyContent: 'center', paddingVertical: 70, position: 'relative' },
+  landingMark: { width: 142, height: 64, marginBottom: 20 },
+  landingKicker: { color: colors.periwinkle, fontSize: 13, fontWeight: '800', letterSpacing: 1.3, textTransform: 'uppercase' },
+  landingTitle: { color: colors.brandDark, ...typography.heroTitle, fontFamily: fontFamily.display, textAlign: 'center', marginTop: 18 },
+  landingCopy: { color: colors.textSecondary, ...typography.heroSubtitle, maxWidth: 540, textAlign: 'center', marginTop: 22 },
+  landingActions: { alignItems: 'center', marginTop: 30 },
+  landingPrimary: { backgroundColor: colors.brand, borderRadius: spacing.radiusMd, paddingHorizontal: 28, paddingVertical: 16, shadowColor: colors.brand, shadowOpacity: 0.28, shadowRadius: 18, shadowOffset: { width: 0, height: 9 }, elevation: 5 },
+  landingPrimaryText: { color: colors.surface, fontSize: 15, fontWeight: '800' },
+  landingArrow: { fontSize: 18 },
+  landingHint: { color: colors.textMuted, fontSize: 12, marginTop: 13 },
+  exampleSection: { paddingVertical: 66, borderTopWidth: 1, borderTopColor: colors.border },
+  exampleHeading: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', gap: 16, marginBottom: 26 },
+  exampleTitle: { color: colors.brandDark, fontSize: 28, lineHeight: 35, fontWeight: '800', marginTop: 7 },
+  exampleNote: { color: colors.textMuted, fontSize: 12, fontWeight: '700' },
+  exampleGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 18 },
+  exampleCard: { flexGrow: 1, flexBasis: '30%' as any, minWidth: 250, maxWidth: 390, backgroundColor: colors.surface, borderRadius: spacing.radiusLg, overflow: 'hidden', borderWidth: 1, borderColor: colors.border },
+  exampleArt: { height: 198, overflow: 'hidden', position: 'relative', backgroundColor: colors.periwinkleMist },
+  exampleArt0: { backgroundColor: '#DDE0F2' }, exampleArt1: { backgroundColor: '#C9CDE4' }, exampleArt2: { backgroundColor: '#E5E7EB' },
+  exampleSun: { position: 'absolute', width: 110, height: 110, borderRadius: 99, backgroundColor: 'rgba(255,255,255,0.62)', top: 24, right: 30 },
+  exampleHorizon: { position: 'absolute', height: 64, left: -20, right: -20, bottom: 0, backgroundColor: 'rgba(14,21,106,0.18)', transform: [{ skewY: '-7deg' }] },
+  exampleFigure: { position: 'absolute', width: 62, height: 118, borderRadius: 32, backgroundColor: 'rgba(2,14,86,0.38)', bottom: 20, left: '43%' as any, transform: [{ rotate: '8deg' }] },
+  exampleLabel: { position: 'absolute', left: 14, top: 14, color: colors.brandDark, fontSize: 10, fontWeight: '900', letterSpacing: 1, backgroundColor: 'rgba(255,255,255,0.72)', paddingHorizontal: 8, paddingVertical: 5, borderRadius: 6, overflow: 'hidden' },
+  exampleCardBody: { padding: 17 }, exampleCardTitle: { color: colors.text, fontSize: 16, fontWeight: '800' }, exampleMeta: { color: colors.textSecondary, fontSize: 12.5, marginTop: 7 }, exampleMatch: { color: colors.periwinkle, fontSize: 12, fontWeight: '800', marginTop: 16 },
+  dropOverlay: { position: 'fixed' as any, inset: 0 as any, zIndex: 1000, backgroundColor: colors.overlay, alignItems: 'center', justifyContent: 'center', padding: 24 } as any,
+  dropOverlayCard: { width: '100%', maxWidth: 560, minHeight: 330, borderWidth: 2, borderStyle: 'dashed', borderColor: colors.surface, borderRadius: spacing.radiusXl, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(132,137,195,0.35)' },
+  dropOverlayIcon: { width: 64, height: 64, borderRadius: 20, backgroundColor: colors.surface, alignItems: 'center', justifyContent: 'center', marginBottom: 18 }, dropOverlayIconText: { color: colors.brand, fontSize: 32, fontWeight: '800' }, dropOverlayTitle: { color: colors.surface, fontSize: 30, fontWeight: '800' }, dropOverlayCopy: { color: 'rgba(255,255,255,0.8)', fontSize: 15, marginTop: 10 },
+
+  message: { color: colors.errorText, fontSize: 13, marginTop: 10, fontWeight: '600' },
+} as any);
